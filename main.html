@@ -9,38 +9,28 @@
 
 <body>
 	<!-- the entire body must be written by student -->
-	<h1>Shopping List</h1>
+	<input type="text" id="item-name-input" placeholder="Item Name">
+  <input type="number" id="item-qty-input" placeholder="Quantity">
+  <input type="number" id="item-price-input" placeholder="Price">
+  <button id="add">Add</button>
 
-<!-- Input fields for item name and price -->
-<label for="item-name-input" id="item-qty-input">Item Name:</label>
-<input type="text" id="item-name-input" aria-label="Enter item name" required>
-<br><br>
-<label for="item-price-input">Price:</label>
-<input type="number" id="item-price-input" aria-label="Enter item price" required>
-<br><br>
+  <!-- Table to display items and their details -->
+  <table>
+    <thead>
+      <tr>
+        <th id="item">Item</th>
+        <th>Quantity</th>
+        <th id="price">Price</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody id="item-list">
+      <!-- Items will be dynamically added here -->
+    </tbody>
+  </table>
 
-<!-- Button to add items -->
-<button id="add">Add</button>
-
-<!-- Table to display the shopping list and grand total -->
-<table aria-role="table">
-  <thead>
-    <tr>
-      <th id="item">Item Name</th>
-      <th id="price">Price</th>
-    </tr>
-  </thead>
-  <tbody id="item-list">
-    <!-- Initially empty rows -->
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="2">
-		  <h3 id="total">Grand Total: 61</h3>
-	  </td>
-    </tr>
-  </tfoot>
-</table>
+  <!-- Display the grand total -->
+  <h3 id="total" class="grand-total">Grand Total: $0.00</h3>
     <script type="text/javascript" src="./script.js">
 </script>
 

@@ -1,36 +1,44 @@
-//your code here
-const addButton = document.getElementById('add');
-  const itemNameInput = document.getElementById('item-name-input');
-  const itemPriceInput = document.getElementById('item-price-input');
-  const itemList = document.getElementById('item-list');
-  const totalDisplay = document.getElementById('total');
+let grandTotal = 0;
 
-  let grandTotal = 0;
+    // Function to add item to the table
+    function addItem() {
+      // Get input values
+      const itemName = document.getElementById("item-name-input").value;
+      const itemQty = document.getElementById("item-qty-input").value;
+      const itemPrice = document.getElementById("item-price-input").value;
 
-  addButton.addEventListener('click', () => {
-    const itemName = itemNameInput.value.trim();
-    const itemPrice = parseFloat(itemPriceInput.value);
+      // Validate input: all fields are required and must be positive numbers
+      if (!itemName || itemQty <= 0 || itemPrice <= 0) {
+        alert("Please enter valid item details.");
+        return;
+      }
 
-    // Validate input
-    if (!itemName || isNaN(itemPrice) || itemPrice <= 0) {
-      alert('Please enter a valid item name and price.');
-      return;
+      // Calculate total price for the item
+      const totalPrice = itemQty * itemPrice;
+
+      // Update grand total
+      grandTotal += totalPrice;
+
+      // Create a new row in the table
+      const tableRow = document.createElement("tr");
+      tableRow.innerHTML = `
+        <td>${itemName}</td>
+        <td>${itemQty}</td>
+        <td>$${parseFloat(itemPrice).toFixed(2)}</td>
+        <td>$${totalPrice.toFixed(2)}</td>
+      `;
+
+      // Append row to the table body
+      document.getElementById("item-list").appendChild(tableRow);
+
+      // Update the displayed grand total
+      document.getElementById("total").innerText = `Grand Total: $${grandTotal.toFixed(2)}`;
+
+      // Clear input fields
+      document.getElementById("item-name-input").value = "";
+      document.getElementById("item-qty-input").value = "";
+      document.getElementById("item-price-input").value = "";
     }
 
-    // Update list and grand total
-    const row = document.createElement('tr');
-    const nameCell = document.createElement('td');
-    nameCell.textContent = itemName;
-    const priceCell = document.createElement('td');
-    priceCell.textContent = `$${itemPrice.toFixed(2)}`;
-    row.appendChild(nameCell);
-    row.appendChild(priceCell);
-    itemList.appendChild(row);
-
-    grandTotal += itemPrice;
-    totalDisplay.textContent = `Grand Total: $${grandTotal.toFixed(2)}`;
-
-    // Clear input fields
-    itemNameInput.value = '';
-    itemPriceInput.value = '';
-  });
+    // Add event listener to the "Add" button
+    document.getElementById("add").addEventListener("click", addItem);
