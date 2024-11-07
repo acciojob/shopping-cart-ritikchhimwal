@@ -1,6 +1,6 @@
 //your code here
 const addButton = document.getElementById('add');
-  const itemNameInput = document.getElementById('item-qty-input');
+  const itemNameInput = document.getElementById('item-name-input');
   const itemPriceInput = document.getElementById('item-price-input');
   const itemList = document.getElementById('item-list');
   const totalDisplay = document.getElementById('total');
